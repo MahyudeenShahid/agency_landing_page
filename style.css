@@ -1,0 +1,36 @@
+body::selection{
+    background-color: #F1AC87;
+}
+body[theme="black"] {
+    background-color: black;
+}
+body[theme="black"] .section {
+    color: white;
+}
+body[theme="cyan"] {
+    background-color: cyan;
+}
+
+body[theme="salmon"] {
+    background-color: salmon;
+}
+
+body[theme="white"] {
+    background-color: white;
+}
+
+@font-face {
+    font-family: 'maqinalight';
+    src: url('assets/fonts/659dbdfd5a080be8d348316f_PPNeueMachina_\ Light.woff') format('woff'),
+         
+}
+@font-face {
+    font-family: 'maqinabold';
+    src: url('assets/fonts/659dbdfd5a080be8d348316e_PP\ Neue\ Machina\ Inktrap\ Medium.woff') format('woff'),
+        
+}
+@font-face {
+    font-family: 'stoshi';
+    src: url('assets/fonts/659dbdfd5a080be8d3483173_Satoshi-Variable.ttf') format('truetype'),
+         
+}
