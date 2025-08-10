@@ -7,6 +7,13 @@
     --dcyan:#1f2f32;
 }
 
+body{
+    transition: background-color 0.5s ease-out;
+}
+
+.video-div{
+    clip-path: circle(var(--clip) at 50% 50%);
+}
 
 
 body::selection{
