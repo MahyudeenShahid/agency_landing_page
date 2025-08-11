@@ -175,9 +175,100 @@ document.querySelectorAll(".section").forEach((section) => {
     });
 });
 }
+function buttonAnimation() {
+    const buttons = document.querySelectorAll(".masker span");
+
+    buttons.forEach((button) => {
+        let clutter = '';
+
+        // Wrap each character in span
+        button.textContent.split('').forEach((char) => {
+            clutter += `<span class="inline-block">${char === " " ? "&nbsp;" : char}</span>`;
+        });
+
+        button.innerHTML = clutter;
+        const letters = button.querySelectorAll("span");
+
+        button.parentElement.addEventListener("mouseenter", () => {
+            // Step 1: Move letters up
+            gsap.to(letters, {
+                y: "-100%",
+                opacity: 0,
+                stagger: 0.03,
+                duration: 0.5,
+                ease: "power4.inOut",
+                onComplete: () => {
+                    // Step 2: Bring them back from bottom
+                    gsap.fromTo(
+                        letters,
+                        { y: "100%", opacity: 0 },
+                        {
+                            y: "0%",
+                            opacity: 1,
+                            stagger: 0.03,
+                            duration: 0.5,
+                            ease: "power4.inOut",
+                            onComplete: () => {
+                                // Reset position
+                                gsap.set(letters, { clearProps: "all" });
+                            }
+                        }
+                    );
+                }
+            });
+        });
+    });
+}
+
+function circle(){gsap.to(".circle-text", {
+  rotation: 360,
+  transformOrigin: "50% 50%",
+  duration: 20,
+  ease: "linear",
+  repeat: -1
+});
+}
+
+function footerlink() {
+    const containers = document.querySelectorAll(".icon-container");
+
+    containers.forEach((container) => {
+        const label = container.querySelector(".link");
+
+        // Start hidden
+        gsap.set(label, { opacity: 0, x: -100, display: "none" });
+
+        container.addEventListener("mouseenter", () => {
+            gsap.set(label, { display: "inline-block",
+                duration: 2,
+                ease: "power2"
+             });
+            gsap.to(label, {
+                opacity: 1,
+                x: 0,
+                duration: 2,
+                ease: "power2"
+            });
+        });
+
+        container.addEventListener("mouseleave", () => {
+            gsap.to(label, {
+                opacity: 0,
+                x: -100,
+                duration: 1,
+                ease: "power2.in",
+                onComplete: () => gsap.set(label, { display: "none" })
+            });
+        });
+    });
+}
+
+
 
 body();
-
+footerlink();
+buttonAnimation();
+circle();
 homePageAnimation();
 slideAnimation();
 teamAnimation();
